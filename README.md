@@ -25,19 +25,19 @@ This Python package was developed as part of a technical task for **Xapien**. It
 ```
 xapien_task/
 ├── src/
-│ ├── init.py # Package initializer
-│ ├── cleaner.py # Cleans and anonymizes URLs in markdown
-│ ├── filter.py # Token estimation and length filtering
-│ └── batcher.py # Batching with greedy bin-packing
+│ ├── init.py 
+│ ├── cleaner.py 
+│ ├── filter.py 
+│ └── batcher.py 
 │
 ├── tests/
-│ ├── test_cleaner.py # Unit tests for cleaner
-│ ├── test_filter.py # Unit tests for filter
-│ └── test_batcher.py # Unit tests for batcher
+│ ├── test_cleaner.py 
+│ ├── test_filter.py 
+│ └── test_batcher.py 
 │
 ├── README.md # Project documentation
-├── requirements.txt # Dependency list (if needed)
-└── pyproject.toml # Package metadata and config
+├── requirements.txt # Dependency list 
+└── pyproject.toml 
 ```
 ---
 
