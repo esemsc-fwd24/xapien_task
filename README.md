@@ -35,8 +35,8 @@ xapien_task/
 │ ├── test_filter.py 
 │ └── test_batcher.py 
 │
-├── README.md # Project documentation
-├── requirements.txt # Dependency list 
+├── README.md 
+├── requirements.txt  
 └── pyproject.toml 
 ```
 ---
