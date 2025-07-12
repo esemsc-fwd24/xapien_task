@@ -48,7 +48,7 @@ Clone the repo:
 ```bash
 git clone https://github.com/esemsc-fwd24/xapien_task.git
 cd xapien_task
-
+```
 
 Install pytest for running tests:
 ```bash
