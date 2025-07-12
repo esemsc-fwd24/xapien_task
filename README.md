@@ -22,7 +22,7 @@ This Python package was developed as part of a technical task for **Xapien**. It
 
 
 ## 📁 Project Structure
-
+```
 xapien_task/
 ├── src/
 │ ├── init.py # Package initializer
@@ -38,7 +38,7 @@ xapien_task/
 ├── README.md # Project documentation
 ├── requirements.txt # Dependency list (if needed)
 └── pyproject.toml # Package metadata and config
-
+```
 ---
 
 ## 🚀 Installation & Usage
