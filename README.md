@@ -25,10 +25,11 @@ This Python package was developed as part of a technical task for **Xapien**. It
 ```
 xapien_task/
 ├── src/
-│ ├── init.py 
+│ ├── __init__.py 
 │ ├── cleaner.py 
 │ ├── filter.py 
-│ └── batcher.py 
+│ ├── batcher.py 
+│ └── pipeline.py 
 │
 ├── tests/
 │ ├── test_cleaner.py 
@@ -41,7 +42,14 @@ xapien_task/
 ```
 ---
 
+> ⚠️ Note: This package uses a `src/` layout. To run scripts manually (e.g., `python -c`), use `from src.module import ...`.
+
 ## 🚀 Installation & Usage
+
+To install the package lcoally:
+```bash
+pip install .
+```
 
 Clone the repo:
 
