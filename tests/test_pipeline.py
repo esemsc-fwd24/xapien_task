@@ -1,13 +1,14 @@
 from src.pipeline import run_pipeline
 from src.filter import estimate_tokens
 
+
 def test_pipeline_removes_oversized_docs_and_batches_correctly():
     docs = [
-        "Visit [Site](https://site.com) and http://link.com",      # should be cleaned + kept
-        "word " * 101_000,                                          # oversized, should be dropped
-        "word " * 50_000 + " Visit https://x.com",                 # cleaned, within limit
+        "Visit [Site](https://site.com) and http://link.com",
+        "word " * 101_000,
+        "word " * 50_000 + " Visit https://x.com",
     ]
-    
+
     batches = run_pipeline(docs)
 
     # Check constraints
@@ -23,18 +24,16 @@ def test_pipeline_removes_oversized_docs_and_batches_correctly():
     assert len(flattened) == 2
 
 
-
-
 def test_pipeline_all_docs_under_limit_in_one_batch():
     docs = [
-        "This is a [link](http://test.com)",             # markdown link
-        "Just a simple doc",                              # no URL
-        "Another one here with https://url.com"          # raw link
+        "This is a [link](http://test.com)",  # markdown link
+        "Just a simple doc",  # no URL
+        "Another one here with https://url.com",  # raw link
     ]
 
     batches = run_pipeline(docs)
     all_processed_docs = batches[0]
-    
+
     # Sort original docs by token count (to match greedy bin-packing order)
     sorted_docs = sorted(docs, key=estimate_tokens, reverse=True)
 
@@ -44,8 +43,6 @@ def test_pipeline_all_docs_under_limit_in_one_batch():
             assert "(...)" in processed_doc or "..." in processed_doc
         else:
             assert processed_doc == original_doc
-
-
 
 
 def test_pipeline_empty_input():

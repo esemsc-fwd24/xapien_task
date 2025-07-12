@@ -1,9 +1,10 @@
-
 from src.batcher import batch_documents
 from src.filter import estimate_tokens
 
+
 def test_empty_input():
     assert batch_documents([]) == []
+
 
 def test_single_small_document():
     docs = ["short document"]
@@ -11,17 +12,20 @@ def test_single_small_document():
     assert len(batches) == 1
     assert batches[0] == docs
 
+
 def test_exact_batch_size_limit():
     docs = ["word"] * 10  # 10 documents, each 1 token
     batches = batch_documents(docs, max_batch_size=10)
     assert len(batches) == 1
     assert batches[0] == docs
 
+
 def test_exceeds_batch_size_limit():
     docs = ["word"] * 11
     batches = batch_documents(docs, max_batch_size=10)
     assert len(batches) == 2
     assert sum(len(batch) for batch in batches) == 11
+
 
 def test_token_limit_enforced():
     # Each doc is 50,000 tokens, so only two can fit across two batches
@@ -32,8 +36,16 @@ def test_token_limit_enforced():
         assert total_tokens <= 100_000
     assert len(batches) == 2  # First batch gets two, second gets one
 
+
 def test_all_documents_accounted_for():
     docs = [f"doc {i}" for i in range(25)]
     batches = batch_documents(docs)
     flattened = [doc for batch in batches for doc in batch]
     assert sorted(flattened) == sorted(docs)
+
+
+def test_mixed_token_sizes():
+    docs = ["word " * 80_000, "tiny", "medium " * 10_000]
+    batches = batch_documents(docs)
+    for batch in batches:
+        assert sum(estimate_tokens(doc) for doc in batch) <= 100_000
